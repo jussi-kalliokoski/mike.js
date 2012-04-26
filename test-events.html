@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script src="mike.js"></script>
+</head>
+<body>
+	<script>
+var LOG = console.log.bind(console);
+
+var mike = new Mike({
+	settings: {
+	}
+});
+
+['ready', 'data', 'error', 'statechange', 'microphonechange'].forEach(function (name) {
+	mike.on(name, function () {
+		LOG('EVENT INSPECTED:', name);
+	});
+});
+
+mike.once('ready', function () {
+	LOG('ready');
+
+	LOG('Available microphones:', this.getMicrophones().join(', '));
+
+	this.setMicrophone();
+});
+
+mike.on('microphonechange', function () {
+	this.start();
+});
+
+mike.on('statechange', function (e) {
+	LOG(e);
+});
+	</script>
+</body>
+</html>
+
