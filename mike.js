@@ -181,8 +181,6 @@ extend(Mike, {
 
 	SoundCodec: SoundCodec,
 
-	error: console.error.bind(console),
-
 	add: function (mike) {
 		this.list.push(mike);
 		this.list[mike.id] = mike;
