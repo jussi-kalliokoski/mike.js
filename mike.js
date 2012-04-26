@@ -99,13 +99,13 @@ Mike.prototype = {
 		obj.id = this.id;
 		obj.type = 'application/x-shockwave-flash';
 		obj.data = this.swfPath;
-		obj.width = 215;
-		obj.height = 138;
 
 		this.parentElement = this.parentElement || document.body;
 		this.domElement = obj;
 
 		this.parentElement.appendChild(obj);
+
+		this.show();
 	},
 
 	start: function () {
@@ -162,6 +162,21 @@ Mike.prototype = {
 		}
 
 		return r;
+	},
+
+	kill: function () {
+		Mike.remove(this);
+		this.domElement.parentNode.removeChild(this.domElement);
+	},
+
+	hide: function () {
+		this.domElement.width = 0;
+		this.domElement.height = 0;
+	},
+
+	show: function () {
+		this.domElement.width = 215;
+		this.domElement.height = 138;
 	}
 };
 
@@ -184,6 +199,14 @@ extend(Mike, {
 	add: function (mike) {
 		this.list.push(mike);
 		this.list[mike.id] = mike;
+	},
+
+	remove: function (mike) {
+		delete this.list[mike.id];
+
+		for (var i=0; i<this.list.length; i++) {
+			if (this.list[i] === mike) this.list.splice(i--, 1);
+		}
 	}
 });
 
