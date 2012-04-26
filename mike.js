@@ -135,7 +135,7 @@ Mike.prototype = {
 	},
 
 	setLoopBack: function (value) {
-		return this.domElement.setLoopback(value);
+		return this.domElement.setLoopBack(value);
 	},
 
 	setSilenceLevel: function (value) {
