@@ -1,3 +1,4 @@
+/*jshint onecase:true undef:true browser:true */
 var Mike = function () {
 
 function extend (obj) {
