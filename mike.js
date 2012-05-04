@@ -127,12 +127,24 @@ Mike.prototype = {
 				}
 			}
 		} else {
-			this.domElement.setParam(name, value);
+			switch (name) {
+			case 'sampleRate':
+				this.domElement.setParam('rate',
+					Mike.rates[value]);
+				break;
+			default:
+				this.domElement.setParam(name, value);
+			}
 		}
 	},
 
 	getParam: function (name) {
-		return this.domElement.getParam(name);
+		switch (name) {
+		case 'sampleRate':
+			return Mike.sampleRates[this.domElement.getParam('rate')];
+		default:
+			return this.domElement.getParam(name);
+		}
 	},
 
 	setLoopBack: function (value) {
@@ -186,6 +198,22 @@ var SoundCodec = {
 	SPEEX: 'speex'
 };
 
+var sampleRates = {
+	'44': 44100,
+	'22': 22050,
+	'11': 11025,
+	'8': 8000,
+	'5': 5512
+};
+
+var rates = {
+	'44100': 44,
+	'22050': 22,
+	'11025': 11,
+	'8000': 8,
+	'5512': 5
+};
+
 /* Declare static */
 extend(Mike, {
 	ERROR_NO_ERROR: 0,
@@ -196,6 +224,8 @@ extend(Mike, {
 	list: [],
 
 	SoundCodec: SoundCodec,
+	sampleRates: sampleRates,
+	rates: rates,
 
 	add: function (mike) {
 		this.list.push(mike);
