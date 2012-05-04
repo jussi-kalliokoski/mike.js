@@ -211,6 +211,8 @@ extend(Mike, {
 	}
 });
 
+EventEmitter(Mike);
+
 /* populate event handlers */
 
 void function (names, i) {
@@ -223,7 +225,9 @@ void function (names, i) {
 			try {
 				this.list[id].emit(name, [].slice.call(arguments, 1));
 			} catch (e) {
-				console.error(e, id);
+				try {
+					Mike.emit('error', [e]);
+				} catch (ee) {}
 			}
 		};
 	}
