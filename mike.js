@@ -265,7 +265,13 @@ void function (names, i) {
 
 	names = null;
 
-}(['ready', 'error', 'data', 'statechange', 'activity']);
+}(['error', 'data', 'statechange', 'activity']);
+
+Mike.onready = function (id) {
+	setTimeout(function () {
+		Mike.list[id].emit('ready', []);
+	}, 0);
+};
 
 return Mike;
 
