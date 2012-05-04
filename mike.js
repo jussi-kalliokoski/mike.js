@@ -249,9 +249,6 @@ void function (names, i) {
 
 	function eventTransmitter(name) {
 		Mike['on' + name] = function (id) {
-			/* We'll just ignore this, probably from a previous instance */
-			if (!this.list[id]) return;
-
 			try {
 				this.list[id].emit(name, [].slice.call(arguments, 1));
 			} catch (e) {
