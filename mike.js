@@ -183,13 +183,13 @@ Mike.prototype = {
 	},
 
 	hide: function () {
-		this.domElement.width = 0;
-		this.domElement.height = 0;
+		this.domElement.style.width = '0px';
+		this.domElement.style.height = '0px';
 	},
 
 	show: function () {
-		this.domElement.width = 215;
-		this.domElement.height = 138;
+		this.domElement.style.width = '215px';
+		this.domElement.style.height = '138px';
 	}
 };
 
